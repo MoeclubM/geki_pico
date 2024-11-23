@@ -48,20 +48,60 @@ static void disp_sound()
 static void disp_hid()
 {
     printf("[HID]\n");
-    printf("  Joy: %s, NKRO: %s.\n", 
-           geki_cfg->hid.joy ? "on" : "off",
-           geki_cfg->hid.nkro ? "on" : "off" );
+    printf("  IO4: %s.\n", geki_cfg->hid.joy ? "ON" : "OFF");
+}
+
+static void disp_tof_status()
+{
+    for (int i = 0; i < airkey_tof_num(); i++) {
+        printf("  TOF %d: %s", i, airkey_tof_model(i));
+    }
+    printf("\n");
+}
+
+static void disp_tof_trigger()
+{
+    const char *names[3] = { "WAD Left", "WAD Right", "Shift (Right)" };
+
+    for (int i = 0; i < 3; i++) {
+        typeof(geki_cfg->tof.trigger[0]) trigger = geki_cfg->tof.trigger[i];
+        printf("  %s: in[%d-%d], out[%d-%d]\n", names[i],
+            trigger.in_low, trigger.in_high, trigger.out_low, trigger.out_high);
+    }
+}
+
+static void disp_tof_mix()
+{
+    for (int i = 0; i < 2; i++) {
+        if (geki_cfg->tof.mix[i].algo > 4) {
+            geki_cfg->tof.mix[i].algo = default_cfg.tof.mix[i].algo;
+            config_changed();
+        }
+        const char *algos[] = { "Primary", "Secondary", "Max", "Min", "Avg" };
+        printf("  %s: %s", i == 0 ? "Left Mix" : "Right Mix",
+                           algos[geki_cfg->tof.mix[i].algo]);
+        if (geki_cfg->tof.mix[i].algo == MIX_AVG) {
+            const char *windows[] = { "No", "5%", "10%", "15%", "20%", "25%", "30%", "35%" };
+            printf(", %s Window", windows[geki_cfg->tof.mix[i].window]);
+        } else {
+            printf("%s", geki_cfg->tof.mix[i].strict ? ", Strict" : "");
+        }
+        printf("\n");
+    }
+}
+
+static void disp_tof_roi()
+{
+    printf("  ROI: %d (only for VL53L1X)\n", geki_cfg->tof.roi);
 }
 
 static void disp_tof()
 {
     printf("[TOF]\n");
-    for (int i = 0; i < airkey_tof_num(); i++) {
-        printf("  TOF %d: %s", i, airkey_tof_model(i));
-    }
-    printf("\n");
-    printf("  ROI: %d (only for VL53L1X)", geki_cfg->tof.roi);
-    printf("\n");
+    disp_tof_status();
+    disp_tof_mix();
+    disp_tof_trigger();
+    disp_tof_roi();
 }
 
 static void disp_aime()
@@ -154,21 +194,20 @@ static void handle_level(int argc, char *argv[])
 
 static void handle_hid(int argc, char *argv[])
 {
-    const char *usage = "Usage: hid <joy|nkro|both>\n";
+    const char *usage = "Usage: hid <io4|off>\n";
     if (argc != 1) {
         printf(usage);
         return;
     }
 
-    const char *choices[] = {"joy", "nkro", "both"};
-    int match = cli_match_prefix(choices, 3, argv[0]);
+    const char *choices[] = {"io4", "off"};
+    int match = cli_match_prefix(choices, count_of(choices), argv[0]);
     if (match < 0) {
         printf(usage);
         return;
     }
 
-    geki_cfg->hid.joy = ((match == 0) || (match == 2)) ? 1 : 0;
-    geki_cfg->hid.nkro = ((match == 1) || (match == 2)) ? 1 : 0;
+    geki_cfg->hid.joy = (match == 0) ? 1 : 0;
     config_changed();
     disp_hid();
 }
@@ -246,26 +285,166 @@ static void handle_lever(int argc, char *argv[])
     disp_lever();
 }
 
-static void handle_tof(int argc, char *argv[])
+static bool handle_tof_roi(int argc, char *argv[])
 {
-    const char *usage = "Usage: tof roi <4..16>\n";
-
-    if ((argc != 2) || (strncasecmp(argv[0], "roi", strlen(argv[0])) != 0)) {
-        printf(usage);
-        return;
+    if (argc != 1) {
+        return false;
     }
 
-    int roi = cli_extract_non_neg_int(argv[1], 0);
+    int roi = cli_extract_non_neg_int(argv[0], 0);
     if ((roi < 4) || (roi > 16)) {
-        printf(usage);
-        return;
+        return false;
     }
 
     geki_cfg->tof.roi = roi;
     airkey_tof_update_roi();
 
     config_changed();
-    disp_tof();
+    disp_tof_roi();
+    return true;
+}
+
+static bool handle_tof_mix(int side, int argc, char *argv[])
+{
+    if ((argc < 1) || (argc > 2)) {
+        return false;
+    }
+
+    const char *algos[] = { "primary", "secondary", "max", "min", "avg" };
+    int algo = cli_match_prefix(algos, 5, argv[0]);
+    if (algo < 0) {
+        return false;
+    }
+
+    if (algo == MIX_AVG) {
+        int window = 0;
+        if (argc == 2) {
+            window = cli_extract_non_neg_int(argv[1], 0);
+            if ((window < 1) || (window > 7)) {
+                return false;
+            }
+        }
+        geki_cfg->tof.mix[side].window = window;
+        geki_cfg->tof.mix[side].strict = (window > 0);
+    } else {
+        geki_cfg->tof.mix[side].window = 0;
+        geki_cfg->tof.mix[side].strict = false;
+        if ((argc == 2) &&
+            (strncasecmp(argv[1], "strict", strlen(argv[1])) == 0)) {
+            geki_cfg->tof.mix[side].strict = true;
+        }
+    }
+    geki_cfg->tof.mix[side].algo = algo;
+    config_changed();
+    disp_tof_mix();
+    return true;
+}
+
+static inline bool out_of_bound(int value, int low, int high)
+{
+    return ((value < low) || (value > high));
+}
+
+static bool handle_tof_trigger(int argc, char *argv[])
+{
+    if ((argc < 3) || (argc > 5)) {
+        return false;
+    }
+
+    const char *names[] = { "left", "right", "shift" };
+    int side = cli_match_prefix(names, 3, argv[0]);
+    if (side < 0) {
+        return false;
+    }
+
+    int in_low = cli_extract_non_neg_int(argv[1], 0);
+    int in_high = cli_extract_non_neg_int(argv[2], 0);
+    if ((in_high < in_low) ||
+         out_of_bound(in_low, 1, 999) || out_of_bound(in_high, 1, 999)) {
+        return false;
+    }
+
+    int out_low = in_low;
+    int out_high = in_high;
+    if (argc >= 4) {
+        out_low = cli_extract_non_neg_int(argv[3], 0);
+        if ((out_low > in_low) || out_of_bound(out_low, 1, 999)) {
+            return false;
+        }
+    }
+    if (argc == 5) {
+        out_high = cli_extract_non_neg_int(argv[4], 0);
+        if ((out_high < in_high) || out_of_bound(out_high, 1, 999)) {
+            return false;
+        }
+    }
+
+    geki_cfg->tof.trigger[side].in_low = in_low;
+    geki_cfg->tof.trigger[side].in_high = in_high;
+    geki_cfg->tof.trigger[side].out_low = out_low;
+    geki_cfg->tof.trigger[side].out_high = out_high;
+    config_changed();
+    disp_tof_trigger();
+    return true;
+}
+
+static bool handle_tof_diag(int argc, char *argv[])
+{
+    if (argc == 0) {
+        geki_runtime.tof_diag = !geki_runtime.tof_diag;
+    } else if (argc == 1) {
+        const char *on_off[] = { "on", "off" };
+        int choice = cli_match_prefix(on_off, 2, argv[0]);
+        if (choice < 0) {
+            return false;
+        }
+        geki_runtime.tof_diag = (choice == 0);
+    } else {
+        return false;
+    }
+
+    printf("TOF diagnose %s.\n", geki_runtime.tof_diag ? "enabled" : "disabled");
+    return true;
+}
+
+static void handle_tof(int argc, char *argv[])
+{
+    const char *usage = "Usage: tof roi <4..16>\n"
+                        "       tof <left|right> <primary|secondary|max|min> [strict]\n"
+                        "       tof <left|right> <avg> [window]\n"
+                        "       tof trigger <left|right|shift> <in_low> <in_high> [<out_low> [out_high]]\n"
+                        "       tof diagnose [on|off]\n"
+                        "   window: 1..7 (5% ~ 35%)\n"
+                        "   in_low, in_high, out_low, out_high: 1..999\n"
+                        "   in_high>=in_low, out_low<=in_low, out_high>=in_high\n";
+
+    if (argc < 1) {
+        printf(usage);
+        return;
+    }
+
+    const char *commands[] = { "left", "right", "roi", "trigger", "diagnose" };
+    int match = cli_match_prefix(commands, count_of(commands), argv[0]);
+
+    if (match == 2) {
+        if (handle_tof_roi(argc - 1, argv + 1)) {
+            return;
+        }
+    } else if (match == 3) {
+        if (handle_tof_trigger(argc - 1, argv + 1)) {
+            return;
+        }
+    } else if (match == 4) {
+        if (handle_tof_diag(argc - 1, argv + 1)) {
+            return;
+        }
+    } else if (match >= 0) {
+        if (handle_tof_mix(match, argc - 1, argv + 1)) {
+            return;
+        }
+    }
+
+    printf(usage);
 }
 
 static void handle_save()

@@ -25,7 +25,7 @@ Special thanks to community projects and developers.
 ## My Other Projects
 You can check out my other cool projects.
 
-<img src="https://github.com/whowechina/popn_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/iidx_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/iidx_teeny/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/chu_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/mai_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/diva_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/aic_pico/raw/main/doc/main.gif" height="100px"> <img src="https://github.com/whowechina/groove_pico/raw/main/doc/main.gif" height="100px"> <img src="https://github.com/whowechina/geki_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/musec_pico/raw/main/doc/main.jpg" height="100px">
+<img src="https://github.com/whowechina/popn_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/iidx_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/iidx_teeny/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/chu_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/mai_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/diva_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/aic_pico/raw/main/doc/main.gif" height="100px"> <img src="https://github.com/whowechina/groove_pico/raw/main/doc/main.gif" height="100px">  <img src="https://github.com/whowechina/geki_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/musec_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/ju_pico/raw/main/doc/main.jpg" height="100px">
 
 * Popn Pico: https://github.com/whowechina/popn_pico
 * IIDX Pico: https://github.com/whowechina/iidx_pico
@@ -37,6 +37,7 @@ You can check out my other cool projects.
 * Groove Pico: https://github.com/whowechina/groove_pico
 * Geki Pico: https://github.com/whowechina/geki_pico
 * Musec Pico: https://github.com/whowechina/musec_pico
+* Ju Pico: https://github.com/whowechina/ju_pico
 
 ## **Disclaimer** ##
 I made this project in my personal time with no financial benefit or sponsorship. I will continue to improve the project. I have done my best to ensure that everything is accurate and functional, there's always a chance that mistakes may occur. I cannot be held responsible for any loss of your time or money that may result from using this open source project. Thank you for your understanding.
@@ -44,7 +45,7 @@ I made this project in my personal time with no financial benefit or sponsorship
 ## About the License
 It's CC-NC. So DIY for yourself and for your friend, don't make money from it. And plagiarism that doesn’t even dare to mention the original author is not acceptable. Plase note that pooling orders and group buying for raw materials is acceptable. Selling off any leftover components without profit is also acceptable.
 
-If you're interested in some kind of commercial use, please contact me (Discord, QQ group, Wechat group or leave your contact in issue section).
+If you're interested in buying from me or some kind of commercial use, please contact me (Discord, QQ group, Wechat group or leave your contact in issue section).
 
 ## My Discord Invitation
 https://discord.gg/M8f2PPQFEA
@@ -64,9 +65,10 @@ https://discord.gg/M8f2PPQFEA
   https://www.nz-electronics.co.nz/products/4pcs-one-sell-3v-5v-supply-voltage-3w-8002-audio-player-power-amplifier-module-board-pcb-mono  
   https://www.ebay.com.au/itm/225481264605
 
-* 2x VL53L0x or VL53L1x ToF sensors, get the optical covers too if possible. VL53L1x is more expensive but has better performance.  
+* 4x VL53L0x ToF sensors (two sensors on each side), get the optical covers too.  
   https://kuriosity.sg/products/time-of-flight-tof-distance-sensor-vl53l0x-200cm-with-optical-cover  
   https://www.smart-prototyping.com/VL53L0X-ToF-Distance-Sensor  
+  You can also use 2x VL53L0x or VL53L1x, meaning each side only has one sensor. The performance is slightly worse.  
   https://www.amazon.com/Soaying-VL53L1X-Distance-Measurement-Extension/dp/B0CTHC43SV
 
 * 2x Small speakers no larger than 20mm\*20mm\*5mm, 8ohm or close, (SPK1, SPK2), you can even harvest similar sized ones from old broken toys.  
@@ -109,7 +111,7 @@ https://discord.gg/M8f2PPQFEA
 
 #### Lever Parts
 * Lever Base: `Production\3DPrint\geki_pico_lever_base.stl`, white.
-* Lever Shaft: `Production\3DPrint\geki_pico_lever_shaft_*mm.stl`, white, choose the one that matches your magnet diameter.
+* Lever Rotator: `Production\3DPrint\geki_pico_lever_rotator_*mm.stl`, white, choose the one that matches your magnet diameter.
 * 2x Lever Fixer: `Production\3DPrint\geki_pico_lever_fixer.stl`, white.
 * Lever Handle: `Production\3DPrint\geki_pico_lever_handle.stl`, red.
 
@@ -117,7 +119,7 @@ https://discord.gg/M8f2PPQFEA
 You need to rotate 135 degrees on Z axis to fit the bed.
 
 * Housing Bottom: `Production\3DPrint\geki_pico_bottom.stl`, I chose sakura pink, what's your choice?
-* Housing Support: `Production\3DPrint\geki_pico_support.stl`, semi-transparent. If you don't have ToF optical cover, or you're not happy with the cover's performance, use the `geki_pico_support_no_cover.stl` instead.
+* Housing Support: `Production\3DPrint\geki_pico_support_*.stl`, semi-transparent. Choose the one that matches your ToF sensor configuration.
 * Housing Top: `Production\3DPrint\geki_pico_top.*`, white. If you have multi-color printing equipment and skill, use the 3mf one (button outlines and logo are black).
 
 #### Button Caps
@@ -140,13 +142,13 @@ You need to rotate 135 degrees on Z axis to fit the bed.
 * Assemble Steps
   1. Print out the parts.  
     <img src="doc/lever_print_1.jpg" width="40%"> <img src="doc/lever_print_2.jpg" width="40%"> 
-  2. Stick PTFE/UHMW tape to the sliding surfaces of the fixer and the shaft. Then trim the tape to match the surface shape. If you have some damping grease (medium or medium-high stickiness), apply a tiny bit on the sliding surfaces. Turn the M2*6mm screws into the bearing fixers halfway, don’t and never tighten them.  
+  2. Stick PTFE/UHMW tape to the sliding surfaces of the fixer and the rotator. Then trim the tape to match the surface shape. If you have some damping grease (medium or medium-high stickiness), apply a tiny bit on the sliding surfaces. Turn the M2*6mm screws into the bearing fixers halfway, don’t and never tighten them.  
     <img src="doc/sliding_surface_1.jpg" width="30%"> <img src="doc/sliding_surface_2.jpg" width="30%"> <img src="doc/sliding_surface_3.jpg" width="15%">
-  3. Install the 2 bearings on both sides of the shaft and put it in the base, then use M2*16mm screws to fix the two bearing fixers on the base.  
-    <img src="doc/install_shaft_1.jpg" width="25%"> <img src="doc/install_shaft_2.jpg" width="25%">
-  4. Use some instant glue to stick the magnet to the bottom of the shaft. Make sure the poles are placed horizontally. A little trick is you connect several magnets together and draw a line to cross all the magnets, and then you know the poles.  
+  3. Install the 2 bearings on both sides of the rotator and put it in the base, then use M2*16mm screws to fix the two bearing fixers on the base.  
+    <img src="doc/install_rotator_1.jpg" width="25%"> <img src="doc/install_rotator_2.jpg" width="25%">
+  4. Use some instant glue to stick the magnet to the bottom of the rotator. Make sure the poles are placed horizontally. A little trick is you connect several magnets together and draw a line to cross all the magnets, and then you know the poles.  
     <img src="doc/magnet_1.jpg" width="43%"> <img src="doc/magnet_2.jpg" width="30%">
-  5. Install the lever handle onto the double-ended stud screw, put aside. Later when the housing is ready we need to screw it into the lever shaft.  
+  5. Install the lever handle onto the double-ended stud screw, put aside. Later when the housing is ready we need to screw it into the lever rotator.  
 
 ### Assembly
 * Other components needed
@@ -157,12 +159,13 @@ You need to rotate 135 degrees on Z axis to fit the bed.
 
 * Steps
   1. Install the lever to the bottom part, using M3\*8mm screws.
-  2. Wire (solder) the ToF sensors to the main PCB, each needs 4 wires.
+  2. Wire (solder) the ToF sensors to the main PCB, each needs 4 wires.  
+     If you're using an older PCB that only supports one sensor on each side, you can manually wire the secondary sensor. The secondary sensor uses the same SDA, SCL and GND pins as the primary sensor, but the VCC pin should be directly connected to the pins of the Pico, GP7 is for the right secondary sensor, GP9 is for the left secondary sensor.
   3. Use VHB tape to fix the ToF sensors on the ToF seats on the bottom part.
   4. Wire (solder) the speakers to the main PCB, each needs 2 wires.
   5. Use VHB tape to fix the speakers on the floor of the bottom part.
   6. Install the main PCB to the bottom part, no screws needed.
-  7. Bend the hall-effect sensor (SS49E) so it stays on top of the lever magnets. Remember to leave a tiny gap so the shaft can move freely.  
+  7. Bend the hall-effect sensor (SS49E) so it stays on top of the lever magnets. Remember to leave a tiny gap so the rotator can move freely.  
     <img src="doc/lever_hall_1.jpg" width="40%"> <img src="doc/lever_hall_2.jpg" width="48%">
   8. Solder the PN532 module, 8002A modules to the main PCB if you haven't done it yet.
   9. Install the main button caps and the aux button caps onto the switches.
@@ -171,7 +174,7 @@ You need to rotate 135 degrees on Z axis to fit the bed.
   11. Now it's the perfect chance to adjust the lever resistance. Slowly and gently turn the M2 screws to adjust the tension on the sliding surface. You may need to turn all the screws evenly.
   12. Put the support part on the bottom part, then put the top part on the support part.
   13. Align these parts and use M3\*20mm screws to fix them together. You may need to carefully adjust the position of the ToF sensors so the IR cover (or the tiny sensor chip) fit into the windows on the support part.
-  14. Finally screw the lever handle into the lever shaft.  
+  14. Finally screw the lever handle into the lever rotator.  
     <img src="doc/finally_done.jpg" width="80%">
 
 ### Firmware
@@ -189,6 +192,12 @@ You need to rotate 135 degrees on Z axis to fit the bed.
   <img src="doc/tof_view_1.png" width="40%"> <img src="doc/tof_view_2.png" width="45%">
 * To emulate IO4 TEST/SERVICE/COIN, you can put your hand in SHIFT zone. When you see the WAD lights flashing, the AUX buttons become TEST and SERVICE, and swinging the lever for "INSERT COINS".
 * AIME is on a secondary COM port. You can set mode or toggle virtual AIC function.
+* ToF mixing algorithms in dual sensor each side configuration.
+  * `primary` and `secondary`: always use primary or secondary sensor, fallback to the other one if the chosen one has no reading, `strict` option means no fallback.
+  * `max` and `min`: use the larger or smaller reading of the two sensors, `strict` option means if one sensor has no reading, result will be no reading.
+  * `average`: use the average of the two sensors, `window` option means readings from both sensors must be within a certain range, otherwise result will be no reading. `window` set to 0 means no range check.
+* You can set trigger window for left WAD, right WAD and shift by `tof trigger <left|right|shift> ...` command. The window is in millimeters. In is the window to trigger, out is the window to release.
+* You can use `tof diagnose [on|off]` command to toggle diagnose mode. In diagnose mode, the ToF sensor will continuously print the raw distance data from all sensors. It's useful for diagnostics.
 
 ## CAD Source File
 I'm using OnShape free subscription. It's powerful but it can't archive original designs to local, so I can only share the link here. STL/DXF/DWG files are exported from this online document.  

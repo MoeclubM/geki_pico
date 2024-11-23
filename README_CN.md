@@ -24,7 +24,7 @@
 ## 其他项目
 你也可以查看我其他的酷炫项目。
 
-<img src="https://github.com/whowechina/popn_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/iidx_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/iidx_teeny/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/chu_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/mai_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/diva_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/aic_pico/raw/main/doc/main.gif" height="100px"> <img src="https://github.com/whowechina/groove_pico/raw/main/doc/main.gif" height="100px"> <img src="https://github.com/whowechina/musec_pico/raw/main/doc/main.jpg" height="100px">
+<img src="https://github.com/whowechina/popn_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/iidx_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/iidx_teeny/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/chu_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/mai_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/diva_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/aic_pico/raw/main/doc/main.gif" height="100px"> <img src="https://github.com/whowechina/groove_pico/raw/main/doc/main.gif" height="100px">  <img src="https://github.com/whowechina/geki_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/musec_pico/raw/main/doc/main.jpg" height="100px"> <img src="https://github.com/whowechina/ju_pico/raw/main/doc/main.jpg" height="100px">
 
 * Popn Pico: https://github.com/whowechina/popn_pico
 * IIDX Pico: https://github.com/whowechina/iidx_pico
@@ -34,7 +34,9 @@
 * Diva Pico: https://github.com/whowechina/diva_pico
 * AIC Pico: https://github.com/whowechina/aic_pico
 * Groove Pico: https://github.com/whowechina/groove_pico
+* Geki Pico: https://github.com/whowechina/geki_pico
 * Musec Pico: https://github.com/whowechina/musec_pico
+* Ju Pico: https://github.com/whowechina/ju_pico
 
 ## **声明** ##
 我在个人时间内制作了这个项目，没有任何经济利益或赞助。我将继续改进这个项目。我已尽我所能确保所有内容的准确性和功能性，但总有可能出现错误。如果你因使用这个开源项目而造成时间或金钱的损失，我不能负责。感谢你的理解。
@@ -42,7 +44,7 @@
 ## 关于许可证
 它是 CC-NC 授权。所以你只能给自己和你的朋友 DIY，不能利用这个项目赚钱，比如收费的代做，出售整机等，连源作者都不敢提的抄袭或者稍微改改换个名字来打擦边球就更不可以了。注意团购和拼单订购原始元器件是合理的，非盈利的方式卖掉剩余的元器件也是可以接受的。
 
-如果希望商用授权或者购买成品（可能较慢），请联系我（Discord，QQ 群，微信群或者在 issue 区留下你的联系方式）。
+如果希望找我购买成品或者寻求商用授权，请联系我（Discord，QQ 群，闲鱼，微信群或者在 issue 区留下你的联系方式）。
 
 ## 我的 Discord 服务器邀请
 https://discord.gg/M8f2PPQFEA
@@ -62,9 +64,10 @@ https://discord.gg/M8f2PPQFEA
   https://www.nz-electronics.co.nz/products/4pcs-one-sell-3v-5v-supply-voltage-3w-8002-audio-player-power-amplifier-module-board-pcb-mono  
   https://www.ebay.com.au/itm/225481264605
 
-* 2x VL53L0x 或者 VL53L1x ToF 距离传感器, 最好也把光学盖片买上。VL53L1x 的性能更好，但是价格也更高。  
+* 4x VL53L0x ToF 距离传感器（左右每边两个）, 把光学盖片买上。  
   https://kuriosity.sg/products/time-of-flight-tof-distance-sensor-vl53l0x-200cm-with-optical-cover  
   https://www.smart-prototyping.com/VL53L0X-ToF-Distance-Sensor  
+  你也可以只用 2x VL53L0x 或者 VL53L1x，也就是每边各一个，这样稳定性稍弱。  
   https://www.amazon.com/Soaying-VL53L1X-Distance-Measurement-Extension/dp/B0CTHC43SV
 
 * 2x 小扬声器，不要大于 20mm\*20mm\*5mm, 8ohm 或者相近的阻抗, (SPK1, SPK2), 买不到的话也可以从旧的电子玩具里拆。  
@@ -108,7 +111,7 @@ https://discord.gg/M8f2PPQFEA
 
 #### 摇杆部分
 * 摇杆底座: `Production\3DPrint\geki_pico_lever_base.stl`, 白色。
-* 摇杆转轴: `Production\3DPrint\geki_pico_lever_shaft_*mm.stl`, 白色，根据你的磁铁直径选择合适的文件。
+* 摇杆转轴: `Production\3DPrint\geki_pico_lever_rotator_*mm.stl`, 白色，根据你的磁铁直径选择合适的文件。
 * 2x 轴承固定器: `Production\3DPrint\geki_pico_lever_fixer.stl`, 白色。
 * 摇杆手柄: `Production\3DPrint\geki_pico_lever_handle.stl`, 红色。
 
@@ -116,7 +119,7 @@ https://discord.gg/M8f2PPQFEA
 你需要在 Z 轴上旋转 135 度来适应热床。
 
 * 外壳底部: `Production\3DPrint\geki_pico_bottom.stl`, 我用了樱花粉，你选什么颜色？
-* 外壳支撑: `Production\3DPrint\geki_pico_support.stl`, 半透明，如果你没有 ToF 的光学盖片，或者你对盖片的性能不满意，那用这个文件代替： `geki_pico_support_no_cover.stl`。
+* 外壳支撑: `Production\3DPrint\geki_pico_support_*.stl`, 半透明，选择匹配你的 ToF 配置的那个。
 * 外壳上部: `Production\3DPrint\geki_pico_top.*`, 白色。如果你有多色打印的设备和技巧，那用 3mf 后缀那个，按钮框和 Logo 是黑色的。
 
 #### 按钮帽
@@ -143,7 +146,7 @@ https://discord.gg/M8f2PPQFEA
   2. 把 PTFE/UHMW 胶带贴在摇杆和轴的滑动表面上，然后大致修剪成相应的形状。如果你有中或中高粘度的阻尼脂，可以在滑动表面涂一丁点。然后把 M2*6mm 螺丝半拧入轴承固定器，注意不要拧紧。  
     <img src="doc/sliding_surface_1.jpg" width="30%"> <img src="doc/sliding_surface_2.jpg" width="30%"> <img src="doc/sliding_surface_3.jpg" width="15%">
   3. 把 2 个轴承固定器固定在底座上，然后用 M2*16mm 螺丝固定轴承。  
-    <img src="doc/install_shaft_1.jpg" width="25%"> <img src="doc/install_shaft_2.jpg" width="25%">
+    <img src="doc/install_rotator_1.jpg" width="25%"> <img src="doc/install_rotator_2.jpg" width="25%">
   4. 用 502 等快干胶把磁铁粘到旋转轴的底部。注意磁铁的极性朝向要尽量水平。你可以先把几个磁铁连在一起，然后画一条线穿过所有的磁铁，这样你就知道极性方向了。  
     <img src="doc/magnet_1.jpg" width="43%"> <img src="doc/magnet_2.jpg" width="30%">
   5. 把摇杆的手柄安装到螺栓上，先放到一边，后面等外壳都装好后再拧到轴上。  
@@ -157,7 +160,8 @@ https://discord.gg/M8f2PPQFEA
 
 * 步骤
   1. 用 M3\*8mm 螺丝把摇杆总成固定到底部。
-  2. 把 ToF 传感器焊接到主 PCB 上，每个需要 4 根线。
+  2. 把 ToF 传感器焊接到主 PCB 上，每个需要 4 根线。  
+     如果你用的是旧版本 PCB，它很可能只支持每边一个传感器，这时候你需要手动接线。`次 ToF` 使用和 `主 ToF` 使用相同的 SDA, SCL 和 GND 引脚，但 VCC 引脚需要直接从 Pico 上去接，右边的 `次 ToF` 的 VCC 接 GP7，左边的 `次 ToF` 的 VCC 接 GP9。
   3. 用 VHB 胶带把 ToF 传感器固定到底部的两侧座位上。
   4. 把扬声器焊接到主 PCB 上，每个需要 2 根线。
   5. 用 VHB 胶带把扬声器固定到底部的地板上。
@@ -189,6 +193,12 @@ https://discord.gg/M8f2PPQFEA
   <img src="doc/tof_view_1.png" width="40%"> <img src="doc/tof_view_2.png" width="45%">
 * 为了模拟 IO4 的 TEST/SERVICE/COIN 这些按钮和功能，你可以把手放到 SHIFT 区域，当你看到控制器两侧指示灯闪烁的时候，两个辅助按钮就变为了 TEST 和 SERVICE，摇动摇杆则是“投币”。
 * AIME 在第二个串口端口，你可以设置工作模式或者开关虚拟 AIC 功能。
+* 每边两个 ToF 情况下的混合算法。
+  * `primary` 和 `secondary`: 总是使用主 ToF 或者次 ToF，如果选择的那个没有读数，就会使用另一个，`strict` 选项表示即使没有读数也不允许使用另一个。
+  * `max` 和 `min`: 使用两个传感器中的较大或较小读数，`strict` 选项表示如果一个传感器没有读数，结果将是没有读数。
+  * `average`: 使用两个传感器的平均值，`window` 选项表示两个传感器的读数必须在一定范围内，否则结果将是没有读数。当 `window` 为 0 表示不比对范围。
+* 你可以使用 `tof trigger <left|right|shift> ...` 命令来设置左右 ToF 和 SHIFT 的触发窗口。窗口单位是毫米。In 是触发窗口，Out 是释放窗口。
+* 你可以使用 `tof diagnose [on|off]` 命令来切换诊断模式。在诊断模式下，ToF 传感器将持续打印所有传感器的原始距离数据。方便调试。
 
 ## CAD Source File
 我使用的是 OnShape 的免费订阅。它很强大，但是它不能将原始设计存档到本地，所以我只能在这里分享链接。STL/DXF/DWG 文件是从这个在线文档导出的。    
